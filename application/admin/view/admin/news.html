@@ -1,0 +1,117 @@
+{include file="common/static" /}
+<div id="contextWrap">
+    {include file="common/left" /}
+</div>
+<!--sidebar-->
+<div class="pusher">
+    <!--navbar-->
+    {include file="common/header" /}
+    <!--navbar-->
+    <!--maincontent-->
+    <div class="mainWrap navslide">
+        <div class="ui equal width left aligned padded grid stackable tables">
+            <!--Site Content-->
+            <div class="row">
+                <div class="sixteen wide column">
+                    <div class="ui segments">
+                        <div class="ui segment">
+                            <h5 class="ui header"> 您现在的位置：首页/ -导航菜单列表 </h5>
+                        </div>
+                        <div class="ui segment">
+                            <button class="ui blue button add-news"><i class="write icon"></i>+添加文章</button>
+                            <table id="data_table" class="ui compact selectable striped celled table tablet stackable"
+                                   cellspacing="0" width="100%">
+                                <colgroup>
+                                    <col width="1%">
+                                    <col width="10%">
+                                    <col width="5%">
+                                    <col width="10%">
+                                    <col width="12%">
+                                    <col width="1%">
+                                    <col width="1%">
+                                    <col width="6%">
+                                    <col width="5%">
+                                    <col width="30%">
+                                </colgroup>
+                                <thead>
+                                <tr>
+                                    <th>顺序</th>
+                                    <th>文章名称</th>
+                                    <th>图标</th>
+                                    <th>作者</th>
+                                    <th>创建时间</th>
+                                    <th>浏览量</th>
+                                    <th>点赞数</th>
+                                    <th>审核</th>
+                                    <th>推荐首页</th>
+                                    <th>简介</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {foreach name="news" item="vo" key="k" }
+                                <tr>
+                                    <td>{$vo.sort}</td>
+                                    <td>{$vo.title}</td>
+                                    <td style="width: 100px;">
+                                        <a href="{$vo.icon}" target="_blank">
+                                            <img src="{$vo.icon}" style="width: 100%"/>
+                                        </a>
+                                    </td>
+                                    <td>{$vo.author}</td>
+                                    <td><?php echo date('Y-m-d H:i:s', $vo['create_time'])?></td>
+                                    <td>{$vo.browse}</td>
+                                    <td>{$vo.dz_num}</td>
+                                    <td style="overflow:visible;">
+                                        {if $vo.status == 1}
+                                        <a href="javascript:;"> <span class="ui green icon button  switch"
+                                                                      data-switch-url="{url('admin/admin/news')}"
+                                                                      data-switch-value="2" data-id="{$vo.id}"
+                                                                      data-field="status"
+                                                                      data-do="_status">通过</span></a>
+                                        {else}
+                                        <a href="javascript:;"> <span class="ui compact icon button  switch"
+                                                                      data-switch-url="{url('admin/admin/news')}"
+                                                                      data-switch-value="1" data-id="{$vo.id}"
+                                                                      data-field="status"
+                                                                      data-do="_status">未通过</span></a>
+                                        {/if}
+                                    </td>
+
+                                    <td style="overflow:visible;">
+                                        {if condition="$vo.is_recommend eq 1" }
+                                        <a href="javascript:;"> <span class="ui green icon button  switch"
+                                                                      data-switch-url="{url('admin/admin/news')}"
+                                                                      data-switch-value="2" data-id="{$vo.id}"
+                                                                      data-field="is_recommend"
+                                                                      data-do="_status">推荐</span></a>
+                                        {else}
+                                        <a href="javascript:;"> <span class="ui compact icon button  switch"
+                                                                      data-switch-url="{url('admin/admin/news')}"
+                                                                      data-switch-value="1" data-id="{$vo.id}"
+                                                                      data-field="is_recommend"
+                                                                      data-do="_status">不推荐</span></a>
+                                        {/if}
+                                    </td>
+                                    <td>{if strlen($vo.intro) > 250} <?php echo substr($vo['intro'], 0, 250)?>.....
+                                        {else} {$vo.intro}{/if}
+                                    </td>
+                                    <td>
+                                        <a href="{url('admin/admin/banner')}?point=update&id={$vo.id}">
+                                            <button class="ui icon blue button" data-id="{$vo.id}"> 编辑</button>
+                                        </a>
+                                        <button class="ui icon red button del-news" data-id="{$vo.id}"> 删除</button>
+                                    </td>
+                                </tr>
+                                {/foreach}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--maincontent-->
+</div>
+{include file="common/footer" /}

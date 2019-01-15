@@ -1,0 +1,61 @@
+{include file="common/static" /}
+<div id="contextWrap">
+    {include file="common/left" /}
+</div>
+<!--sidebar-->
+<div class="pusher">
+    <!--navbar-->
+    {include file="common/header" /}
+    <style>
+        .help-text {
+            margin-bottom: 1%;
+            margin-top: -0.5%;
+        }
+    </style>
+    <!--maincontent-->
+    <div class="mainWrap navslide">
+
+        <h5 class="ui header"> 您现在的位置：<a href="/">首页</a>/     {if !empty($account)}密码修改{else}添加账户{/if}</h5>
+        <!--setting-->
+        <div class="ui segment" style="    width: 79%; margin-top: 30px;  margin-left: 99px;">
+            <div class="ui labeled input fluid">
+                <label class="ui label"> 用户名: </label>
+                <input type="text" name="username"  {if !empty($account)}  value="{$account.username}" {/if} placeholder="用户名">
+            </div>
+            {if !empty($account)}
+            <div class="ui labeled input fluid">
+                <div class="ui label">
+                    旧密码:
+                </div>
+                <input type="password" name="oldpassword"  placeholder="输入旧密码">
+            </div>
+            {/if}
+
+            <div class="ui labeled input fluid">
+                <div class="ui label">
+                    {if !empty($account)}新密码:{else}输入密码：{/if}
+                </div>
+                <input type="password" name="password" placeholder="新密码">
+            </div>
+             <div class="ui labeled input fluid">
+                <div class="ui label">
+                    {if !empty($account)}再次输入新密码:{else}请在次输入密码：{/if}
+                </div>
+                <input type="password" name="repassword" placeholder="再次输入新密码">
+            </div>
+            <div class="uploader-demo">
+                <!--用来存放item-->
+                <div id="fileList{$rand}" class="uploader-list uploads1"></div>
+                <div id="filePicker{$rand}" class="uploads">上传管理员头像</div>
+                {if !empty($account.icon)}
+                <img src="{$account.icon}" style="width: 5%"/>
+                {/if}
+                <input type="text" style="display: none" class="upload-file" value="<?php if(!empty($account['icon'])){ echo $account['icon'];}?>" name="icon" placeholder="">
+            </div>
+            <input type="hidden" name="id" value="<?php if(!empty($account['id'])) {echo $account['id'];};?>">
+            <div class="button-container" style="margin-top: 3%;">
+                <button class="five ui blue button add-account">提交发布</button>
+            </div>
+        </div>
+    </div>
+    {include file="common/footer" /}

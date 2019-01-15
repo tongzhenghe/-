@@ -1,0 +1,120 @@
+{include file="common/static" /}
+<div id="contextWrap">
+    {include file="common/left" /}
+</div>
+<!--sidebar-->
+<div class="pusher">
+    <!--navbar-->
+    {include file="common/header" /}
+    <style>
+        .help-text {
+            margin-bottom: 1%;
+            margin-top: -0.5%;
+        }
+    </style>
+    <!--maincontent-->
+    <div class="mainWrap navslide">
+
+        <h5 class="ui header"> 您现在的位置：<a href="/">首页</a>/ 网站设置</h5>
+        <!--setting-->
+        <div class="ui segment" style="    width: 79%; margin-top: 30px;  margin-left: 99px;">
+
+            <!--<form class="ui form segment form3" method="post" action="{url('admin/admin/setting')}">-->
+            <div class="ui labeled input fluid">
+                <label class="ui label"> 网站标题: </label>
+                <input type="text" name="title" {if !empty($setting.title)} value="{$setting.title}" {/if}
+                placeholder="网站title">
+            </div>
+            <div class="help-text" style="">提示： 用于网站标题头。</div>
+            <div class="ui labeled input fluid">
+                <div class="ui label">
+                    联系人:
+                </div>
+                <input type="text" name="people" {if !empty($setting.people)} value="{$setting.people}" {/if}
+                placeholder="联系人">
+            </div>
+            <div class="help-text"></div>
+
+            <div class="ui labeled input fluid">
+                <div class="ui label">
+                    联系方式:
+                </div>
+                <input type="text" name="people_tel" {if !empty($setting.people_tel)} value="{$setting.people_tel}"
+                       {/if} placeholder="联系方式">
+            </div>
+            <div class="ui labeled input fluid">
+                <div class="ui label">
+                    Email:
+                </div>
+                <input type="text" name="email" {if !empty($setting.email)} value="{$setting.email}" {/if}
+                placeholder="公司邮箱">
+            </div>
+            <div class="ui labeled input fluid">
+                <div class="ui label">
+                    公司地址:
+                </div>
+                <input type="text" name="address" {if !empty($setting.address)} value="{$setting.address}" {/if}
+                placeholder="公司地址">
+            </div>
+
+            <label>底部文本：</label>
+            <div class="ui segment" style="width: 75%;   ">
+                <div class="ui form">
+                    <div class="field">
+                        <textarea name="footer_msg" class="trumbowygeditor">  {if !empty($setting.footer_msg)}{$setting.footer_msg}  {/if}</textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="help-text">例如：©copyright 2010-2018 酒泉华美医疗美容医院 陇ICP备16001738号。</div>
+
+            <label>网站描述：</label>
+            <div class="ui segment" style="width: 75%;   ">
+                <div class="ui form">
+                    <div class="field">
+                        <textarea name="description" class="trumbowygeditor">  {if !empty($setting.description)}{$setting.description}  {/if}</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="help-text">提示： 用于外部搜索。</div>
+
+            <label>网站关键词：</label>
+            <div class="ui segment" style="width: 75%;   ">
+                <div class="ui form">
+                    <div class="field">
+                        <textarea name="keywords" class="trumbowygeditor">   {if !empty($setting.keywords)} {$setting.keywords} {/if}</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="help-text">提示：填写网站关键词。</div>
+            <label>特产介绍：</label>
+                    <div class="field">
+                        <textarea id="container2"  name="native" type="text">{present name="setting"}{$setting.native}{/present}</textarea>
+                    </div>
+
+               <label>企业简介222：</label>
+                    <div class="field">
+                        <textarea id="container"  name="comintro" type="text">{present name="setting"}{$setting.comintro}{/present}</textarea>
+                    </div>
+            <div class="uploader-demo">
+                <!--用来存放item-->
+                <div id="fileList{$rand}" class="uploader-list uploads1"></div>
+                <div id="filePicker{$rand}" class="uploads">上传二维码</div>
+                {if !empty($setting.code)}
+                <img src="{$setting.code}" style="width: 5%"/>
+                {/if}
+                <input type="text" style="display: none" class="upload-file"
+                       value="<?php if(!empty($setting['code'])){ echo $setting['code'];}?>" name="code"
+                       placeholder="">
+            </div>
+            <input type="hidden" name="id" value="<?php if(!empty($setting['id'])) {echo $setting['id'];};?>">
+            <div class="button-container" style="margin-top: 3%;">
+                <button class="five ui blue button setting-us">提交发布</button>
+            </div>
+            <!--</form>-->
+
+            <!--setting-->
+        </div>
+    </div>
+    {include file="common/footer" /}
+

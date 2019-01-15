@@ -1,0 +1,81 @@
+{include file="common/static" /}
+<div id="contextWrap">
+    {include file="common/left" /}
+</div>
+<!--sidebar-->
+<div class="pusher">
+    <!--navbar-->
+    {include file="common/header" /}
+    <!--navbar-->
+    <!--maincontent-->
+    <div class="mainWrap navslide">
+        <div class="ui equal width left aligned padded grid stackable tables">
+            <!--Site Content-->
+            <div class="row">
+                <div class="sixteen wide column">
+                    <div class="ui segments">
+                        <div class="ui segment">
+                            <h5 class="ui header"> 您现在的位置：首页/ -关键词列表 </h5>
+                        </div>
+                        <div class="ui segment">
+                            <button class="ui blue button add_keywords"><i class="write icon"></i>+添加关键词</button>
+                            <table id="data_table" class="ui compact selectable striped celled table tablet stackable"
+                                   cellspacing="0" width="100%">
+                                <thead>
+                                <tr>
+                                    <th>顺序</th>
+                                    <th>关键词</th>
+                                    <th>url</th>
+                                    <th>是否推荐到首页</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {foreach name="keywords" item="vo" key="k" }
+                                <tr>
+                                    <td>{$vo.sort}</td>
+                                    <td>{$vo.keywords}</td>
+                                    <td>{$vo.url}</td>
+                                    <td style="overflow:visible;">
+                                        {if $vo.recommend == 1}
+                                        <a href="javascript:;"> <span class="ui green icon button  switch"
+                                                                      data-switch-url="{url('admin/admin/keywords')}"
+                                                                      data-switch-value="2" data-id="{$vo.id}"
+                                                                      data-field="recommend"
+                                                                      data-do="_status">推荐</span></a>
+                                        {else}
+                                        <a href="javascript:;"> <span class="ui compact icon button  switch"
+                                                                      data-switch-url="{url('admin/admin/keywords')}"
+                                                                      data-switch-value="1" data-id="{$vo.id}"
+                                                                      data-field="recommend"
+                                                                      data-do="_status">不推荐</span></a>
+                                        {/if}
+                                    </td>
+                                    <td>
+                                        {if condition="$vo.status eq 1" }
+                                        <button class="ui green icon button close-status-keywords" data-id="{$vo.id}">
+                                            已审核
+                                        </button>
+                                        {else /}
+                                        <button class="ui compact icon button open-status-keywords" data-id="{$vo.id}">
+                                          未审核</button>
+                                        {/if}
+                                        <a href="<?php echo url('admin/admin/addkeywords')?>?id={$vo.id}">
+                                            <button class="ui icon blue button"> 编辑</button>
+                                        </a>
+                                        <button class="ui icon red button delete-keywords" data-id="{$vo.id}"> 删除
+                                        </button>
+                                    </td>
+                                </tr>
+                                {/foreach}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--maincontent-->
+</div>
+{include file="common/footer" /}

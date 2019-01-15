@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<HTML
+        xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+    <META content="IE=11.0000"
+          http-equiv="X-UA-Compatible">
+    <META http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <TITLE>炬晖农业</TITLE>
+    {css href="/static/login/css.css"}
+    {js href="/static/login/js/jquery-1.9.1.min.js"}
+    {js href="/static/login/js/self.js"}
+    <META name="GENERATOR" content="MSHTML 11.00.9600.17496">
+</HEAD>
+<BODY>
+<DIV class="top_div"></DIV>
+<DIV style="background: rgb(255, 255, 255); margin: -100px auto auto; border: 1px solid rgb(231, 231, 231); border-image: none; width: 400px; height: 314px; text-align: center;">
+    <DIV style="width: 165px; height: 96px; position: absolute;">
+        <DIV class="tou"></DIV>
+        <DIV class="initial_left_hand" id="left_hand"></DIV>
+        <DIV class="initial_right_hand" id="right_hand"></DIV>
+    </DIV>
+    <P style="padding: 30px 0px 10px; position: relative;"><SPAN class="u_logo"></SPAN> <INPUT class="ipt"   autocomplete="off" name="username" type="text"
+                                                                                               placeholder="请输入用户名"
+                                                                                               value=""></P>
+    <P style="position: relative;"><SPAN class="p_logo"></SPAN>
+        <INPUT class="ipt" id="password" type="password" placeholder="请输入密码" value=""   autocomplete="off">
+    </P>
+    <P style="padding: 11px 0px 10px; position: relative;"><INPUT class="ipt" type="text" id="captcha"   autocomplete="off"  placeholder="请输入验证码" value="">
+    </P>
+    <a href="javascript:;"><img src="{:captcha_src()}" style="    border: 1px solid #d4dbe4;
+    margin: auto;
+    border-radius: 3px;
+    width: 55%;" class="verify" onclick="javascript:this.src='{:captcha_src()}?rand='+Math.random()"></a>
+    <span style="color: #bababa">点击图片刷新验证码</span>
+    <DIV style="    height: 50px;
+    line-height: 50px;
+    margin-top: 8px;
+    border-top-color: rgb(255, 237, 237);
+    border-top-width: 1px;
+    border-top-style: solid;">
+        <P style="margin: 0px 35px 20px 45px;">
+            <SPAN style="float: left;"><A style="color: rgb(204, 204, 204);"
+                                          href="javascript: alert('请联系管理员：12345655');">忘记密码?</A></SPAN>
+            <SPAN style="float: right;">
+              <A id="login" style="background: rgb(0, 142, 173); padding: 7px 10px; border-radius: 4px; border: 1px solid rgb(26, 117, 152); border-image: none; color: rgb(255, 255, 255); font-weight: bold;"
+                 href="javascript:;">登录</A>
+           </SPAN>
+        </P>
+    </DIV>
+</DIV>
+<div style="text-align:center;">
+    <p>酒泉炬晖农业农民专业合作社</p>
+</div>
+</BODY>
+</HTML>

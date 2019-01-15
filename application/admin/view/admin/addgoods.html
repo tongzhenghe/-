@@ -1,0 +1,86 @@
+{include file="common/static" /}
+<div id="contextWrap">
+    {include file="common/left" /}
+</div>
+<!--sidebar-->
+<div class="pusher">
+    <!--navbar-->
+    {include file="common/header" /}
+
+    <!--maincontent-->
+    <div class="mainWrap navslide" >
+        <h5 class="ui header"> 您现在的位置：<a href="javascript:;window.history.go(-1)">商品列表</a>/ 商品-添加  </h5>
+
+        <div class="row">
+            <div class="sixteen wide tablet sixteen wide computer column" style="margin-left: 28px; width: 78%;">
+                <div class="ui segments">
+
+                    <div class="ui segment">
+                        <div class="ui pointing secondary menu ajaxtab">
+                            <a class="item active" data-tab="first">商品基本信息</a>
+                            <a class="item" data-tab="second">商品介绍</a>
+                            <!--<a class="item" data-tab="third">商品规格</a>-->
+                        </div>
+                        <form class="ui form segment form3">
+                        <!--noe-->
+                        <div class="ui tab segment active" data-tab="first">
+                            <!--basis.html-->
+                            {include file="admin/goodspost/basis" /}
+                        </div>
+
+                        <!--tow-->
+                        <div class="ui tab segment" data-tab="second">
+                            {include file="admin/goodspost/details" /}
+                        </div>
+
+                        <!--there-->
+                        <!--<div class="ui tab segment" data-tab="third">-->
+                            <!--<h3 class="ui header">AJAX Tab Three</h3>-->
+                        <!--</div>-->
+                            <input name="id"  value="<?php if(!empty($find)){echo  $find['id'];}?>"   type="hidden" />
+                            <div class="ui blue submit button add-goods">保存提交</div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+        <!--添加-->
+    </div>
+    <!--maincontent-->
+
+{include file="common/footer" /}
+
+<script>
+
+    $(".menu .item").tab();
+    $('#context1 .menu .item').tab({
+        context: $('#context1')
+    });
+    $('.paths.example .menu .item').tab({
+        context: '.paths.example'
+    });
+    $(document).ready(function () {
+        $('.ajaxtab .item').tab({
+            cache: false,
+            // faking API request
+            apiSettings: {
+                loadingDuration : 300,
+                mockResponse    : function(settings) {
+                    var response = {
+                        first  : 'AJAX Tab One',
+                        second : 'AJAX Tab Two',
+                        third  : 'AJAX Tab Three'
+                    };
+                    return response[settings.urlData.tab];
+                }
+            },
+            context : 'parent',
+            auto    : true,
+            path    : '/'
+        });
+    });
+</script>

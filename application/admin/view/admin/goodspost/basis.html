@@ -1,0 +1,183 @@
+
+<div class="field">
+    <label>顺序：</label>
+    <input placeholder="顺序：越小越靠前"  value="<?php if(!empty($find)){echo  $find['sort'];}?>" name="sort" type="text">
+</div>
+
+<div class="field">
+    <label>商品名称：</label>
+    <input placeholder="名称"  value="<?php if(!empty($find)){echo  $find['name'];}?>" name="name" type="text">
+</div>
+
+<div class="field">
+    <label>品种：</label>
+    <input placeholder="品种"  value="<?php if(!empty($find)){echo  $find['variety'];}?>" name="variety" type="text">
+</div>
+
+<div class="inline field">
+    <label>袋装规格：</label>
+    <div class="ui right labeled fluid input">
+        <input type="number" placeholder="袋装规格"   {present name="find"} value="{$find.packing_specifications}" {/present}  name="packing_specifications" >
+        <div class="ui dropdown label" tabindex="0">
+            <div class="text">
+                <font style="vertical-align: inherit;">kg/袋</font>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="field">
+    <label>所属分类：</label>
+<select name="cateid">
+    <option name="cateid" value="0">商品分类</option>
+    {foreach name="goodsCate" item="vo" key="k" }
+    <!--如果pid=0 则值为0； 就不为自身id-->
+    <option name="cateid" value="{$vo.id}" {if $vo.pid == 0 } disabled style="font-size: 14px; background: #d6d5d8;" {/if}<?php if( !empty($find['id']) && $vo['id'] == $find['cateid'] ) {echo 'selected';} ?>><?php if(!empty($vo['html'])){ echo $vo['html'];}?>{$vo.cate_name}</option>
+    {/foreach}
+</select>
+</div>
+
+
+<div class="field">
+    <label>所属品牌：</label>
+<select name="brandid">
+    <option name="brandid">品牌</option>
+    {if !empty($brand)}
+    {foreach name="brand" item="vo" key="k" }
+    <option name="brandid" value="{$vo.id}" <?php if( !empty($find['id']) && $vo['id'] == $find['id'] ) {echo 'selected';} ?>>{$vo.name}</option>
+    {/foreach}
+    {/if}
+</select>
+</div>
+
+
+<div class="field">
+    <label>上传商品图标：</label>
+    <div class="uploader-demo">
+    <!--用来存放item-->
+    <div id="fileList{$rand}" class="uploader-list uploads1"></div>
+    <div id="filePicker{$rand}" class="uploads">上传商品图标</div>
+    {present name="find"}
+    <img src="{$find.icon}"  style="width: 5%"/>
+    {/present}
+    <input type="hidden" class="upload-file" value="{present name="find"} {$find.icon} {/present}"  name="icon" >
+</div>
+</div>
+
+<div class="inline field">
+    <label>原价：</label>
+    <div class="ui right labeled fluid input">
+        <input type="number" placeholder="old_price"   {present name="find"} value="{$find.old_price}" {/present} name="old_price" >
+        <div class="ui dropdown label" tabindex="0">
+            <div class="text">
+                <font style="vertical-align: inherit;">元</font>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="inline field">
+    <label>现价：</label>
+    <div class="ui right labeled fluid input">
+        <input type="number" placeholder="new_price"   {present name="find"} value="{$find.new_price}" {/present}  name="new_price" >
+        <div class="ui dropdown label" tabindex="0">
+            <div class="text">
+                <font style="vertical-align: inherit;">元</font>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="inline field">
+    <label>重量：</label>
+    <div class="ui right labeled fluid input">
+        <input type="number" placeholder="weight"    {present name="find"} value="{$find.weight}" {/present}  name="weight" >
+        <div class="ui dropdown label" tabindex="0">
+            <div class="text">
+                <font style="vertical-align: inherit;">kg</font>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="inline field">
+    <label>邮费：</label>
+    <div class="ui right labeled fluid input">
+        <input type="text" placeholder="expresses_price"    {present name="find"} value="{$find.expresses_price}" {/present}  name="expresses_price" >
+        <div class="ui dropdown label" tabindex="0">
+            <div class="text">
+                <font style="vertical-align: inherit;">元</font>
+            </div>
+        </div>
+    </div>
+    <div class="help-text">注意：不填则免邮</div>
+</div>
+
+
+<label style="font-weight: bold;">添加标签：</label>
+<div class="label label-text" >
+    {present name="find"}
+    {foreach name="find.label" item="vo" key="k" }
+    <span class="label-set" style="width: 162px; ">
+        <input type="hidden" name="lables" value="{$vo}" />
+          <div class="ui olive tag label" >
+              <font style="vertical-align: inherit;">{$vo}</font>
+          </div>
+          <a  class="removes-label" href="javascript:;"><span style="margin-left: -3px;;background-color: #e8e8e8; border: 5px solid #e8e8e8; border-radius:5px;">x</span></a>
+          </span>
+    {/foreach}
+{/present}
+
+</div>
+<div class="inline field">
+    <input type="text" name="label" placeholder="添加标签">
+    <a class="ui MINI label add-label" style="margin-left: -10px;"><font style="vertical-align: inherit;">添加</font></a>
+    <input type="hidden" name="labels[]" placeholder="添加标签">
+</div>
+
+
+<div class="inline field">
+    <label>是否热销：</label>
+    <div class="ui slider checkbox">
+        <input type="checkbox" name="is_hot"  <?php if( !empty($find) && $find['is_hot'] == 1){ echo 'checked';  } ?>>
+        <?php if( !empty($find) && $find['is_hot'] == 1){ echo '<label style="color: #bdbbb6;" class="che">是</label>';  } else { echo '  <label style="color: #bdbbb6;" class="che">否</label>';}?>
+    </div>
+    <div class="help-text" style="">默认：否</div>
+</div>
+
+<div class="inline field">
+    <label>推荐首页：</label>
+    <div class="ui slider checkbox">
+        <input type="checkbox" name="is_recommend"  <?php if( !empty($find) && $find['is_recommend'] == 1){ echo 'checked';  } ?>>
+        <?php if( !empty($find) && $find['is_recommend'] == 1){ echo '<label style="color: #bdbbb6;" class="che2">推荐</label>';  } else { echo '  <label style="color: #bdbbb6;" class="che2">不推荐</label>';}?>
+    </div>
+    <div class="help-text" style="">默认：不推荐</div>
+</div>
+
+<div class="inline field">
+    <label>自定销量：</label>
+    <input placeholder="volume"  value="<?php if(!empty($find)){echo  $find['volume'];}?>" name="volume" type="number">
+</div>
+
+<!--dom结构部分-->
+<div id="uploader-demo">
+    <!--用来存放item-->
+    <div class="uploader-list upload"></div>
+    <div class="filePicker">选择图片</div>
+    <div  class="images">
+        {present name="find"}
+        {foreach name="find.pic" item="vo" key="k" }
+        <span class="images-list">
+          <a href="javascript:;" class="up-remove-image">  <span style="      position: absolute;   background: #010b136e;    width: 16px;  height: 19px;   font-size: 14px;   color: white;  text-align: center; border-radius: 3px;">x</span></a>
+            <img src="{$vo}" style="width: 20%;    margin-right: 24px;" />
+        <input type="hidden" name="images" value="{$vo}"/>
+        </span>
+        {/foreach}
+        {/present}
+    </div>
+</div>
+
+
+
+

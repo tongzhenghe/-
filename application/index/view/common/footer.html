@@ -1,0 +1,241 @@
+
+<style>
+    .footernav a {
+        color: #fff;
+        float: left;
+        display: block;
+        font-size: 1.7rem;
+        padding: 20px;
+        font-weight: 600;
+        width: 10%;
+    }
+    .footernav a:hover{
+        color: #74ab4a;
+    }
+</style>
+
+<!--== Start Newsletter Area ==-->
+<div class="newsletter-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 m-auto">
+                <!-- Newsletter Content Start -->
+                <div class="footernav">
+
+                    {if !empty($menu)}
+
+                    {volist name="menu" id="vo"}
+
+                    <a href="{$vo.url}" title="{$vo.title}">{$vo.title}</a>
+
+                    {/volist}
+
+                    {/if}
+
+                </div>
+                <!-- Newsletter Content End -->
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--== End Newsletter Area ==-->
+<footer id="footer-area">
+    <!-- Footer Widget Area Start -->
+    <div class="footer-widget-area">
+        <div class="container">
+            <div class="footer-widget-content">
+                <div class="row">
+                    <!-- Single Widget-item Start -->
+                    <div class="col-lg-6     col-sm-6">
+                        <div class="single-widget-item">
+                            <h3 class="widget-title">关注我们</h3>
+                            <div class="widget-body">
+                                <ul class="footer-list">
+                                    <li><div class="module">
+                                        <li> [{$setting.title}]</li>
+                                        <li><img src="{$setting.code}" style="    width: 34%;" alt="{$setting.title}" title="{$setting.title}"></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-10">
+                        <div class="single-widget-item">
+                            <h3 class="widget-title">联系我们</h3>
+                            <div class="widget-body">
+                                <div class="contact-info">
+                                    <div class="single-contact-info">
+                                    <span class="contact-icon">
+                                        <i class="fa fa-phone"></i>
+                                    </span>
+                                        <a href="javascript: alert('官方热线：{$setting.people_tel}');" class="contact-text">
+                                            <strong></strong>{$setting.people_tel}
+                                        </a>
+                                    </div>
+                                    <div class="single-contact-info">
+                                    <span class="contact-icon">
+                                        <i class="fa fa-envelope"></i>
+                                    </span>
+                                        <a href="javascript:alert('官方邮箱：{$setting.email}');" class="contact-text">
+                                            <strong></strong> {$setting.email}
+                                        </a>
+                                    </div>
+                                    <div class="single-contact-info">
+                                    <span class="contact-icon">
+                                        <i class="fa fa-home"></i>
+                                    </span>
+                                        <a href="javascript: alert('地址：{$setting.address}');" class="contact-text">
+                                            <strong></strong>{$setting.address}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single Widget-item End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer Widget Area End -->
+
+    <!-- Footer Bottom Area -->
+    <div class="footer-bttom-area">
+        <div class="container">
+            <div class="row">
+                <!-- Copyright Text Area -->
+                <div class="col-md-6 m-auto text-center text-md-left order-last order-md-first">
+                    <p>{$setting.footer_msg}</p>
+                </div>
+                <!-- Copyright Text Area -->
+
+                <!-- 合作方-->
+                <!--<div class="col-md-6 m-auto text-center text-md-right">-->
+                    <!--<div class="payment-support">-->
+                        <!--<img src="/static/index/assets/img/payment.png" alt="Payment" class="d-inline-block" />-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!-- Payment Method Area -->
+            </div>
+        </div>
+    </div>
+    <!-- Footer Bottom Area -->
+</footer>
+<!--== End Footer Area ==-->
+
+
+<!-- Scroll to Top Start -->
+<a href="#" class="scrolltotop"><i class="fa fa-angle-up"></i></a>
+<!-- Scroll to Top End -->
+
+<!--== Product Quick View Modal Area Wrap ==-->
+<div class="modal" id="quickView" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true"><img src="/static/index/assets/img/icons/cancel.png" alt="Close" class="img-fluid" /></span>
+            </button>
+            <div class="modal-body">
+                <div class="quick-view-content single-product-page-content">
+                    <div class="row">
+                        <!-- Product Thumbnail Start -->
+                        <div class="col-lg-5 col-md-6">
+                            <div class="product-thumbnail-wrap">
+                                <div class="product-thumb-carousel owl-carousel">
+                                    <div class="single-thumb-item">
+                                        <a href="single-product.html"><img class="img-fluid" src="/static/index/assets/img/single-pro-1.jpg" alt="Product" /></a>
+                                    </div>
+
+                                    <div class="single-thumb-item">
+                                        <a href="single-product.html"><img class="img-fluid" src="/static/index/assets/img/single-pro-2.jpg" alt="Product" /></a>
+                                    </div>
+
+                                    <div class="single-thumb-item">
+                                        <a href="single-product.html"><img class="img-fluid" src="/static/index/assets/img/single-pro-3.jpg" alt="Product" /></a>
+                                    </div>
+
+                                    <div class="single-thumb-item">
+                                        <a href="single-product.html"><img class="img-fluid" src="/static/index/assets/img/single-pro-4.jpg" alt="Product" /></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Product Thumbnail End -->
+
+                        <!-- Product Details Start -->
+                        <div class="col-lg-7 col-md-6 mt-5 mt-md-0">
+                            <div class="product-details">
+                                <h2><a href="single-product.html">Crown Summit Backpack</a></h2>
+
+                                <div class="rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-half"></i>
+                                    <i class="fa fa-star-o"></i>
+                                </div>
+
+                                <span class="price">$52.00</span>
+
+                                <div class="product-info-stock-sku">
+                                    <span class="product-stock-status text-success">In Stock</span>
+                                    <span class="product-sku-status ml-5"><strong>SKU</strong> MH03</span>
+                                </div>
+
+                                <p class="products-desc">Ideal for cold-weathered training worked lorem ipsum outdoors, the Chaz Hoodie promises superior warmth with every wear. Thick material blocks out the wind as ribbed cuffs and bottom band seal in body heat Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, reprehenderit.</p>
+                                <div class="shopping-option-item">
+                                    <h4>Color</h4>
+                                    <ul class="color-option-select d-flex">
+                                        <li class="color-item black">
+                                            <div class="color-hvr">
+                                                <span class="color-fill"></span>
+                                                <span class="color-name">Black</span>
+                                            </div>
+                                        </li>
+
+                                        <li class="color-item green">
+                                            <div class="color-hvr">
+                                                <span class="color-fill"></span>
+                                                <span class="color-name">green</span>
+                                            </div>
+                                        </li>
+
+                                        <li class="color-item orange">
+                                            <div class="color-hvr">
+                                                <span class="color-fill"></span>
+                                                <span class="color-name">Orange</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="product-quantity d-flex align-items-center">
+                                    <div class="quantity-field">
+                                        <label for="qty">Qty</label>
+                                        <input type="number" id="qty" min="1" max="100" value="1" />
+                                    </div>
+
+                                    <a href="cart.html" class="btn">Add to Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Product Details End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{js href="/static/index/assets/js/vendor/jquery-3.3.1.min.js"}
+{js href="/static/index/assets/js/vendor/jquery-migrate-1.4.1.min.js"}
+{js href="/static/index/assets/js/vendor/popper.min.js"}
+{js href="/static/index/assets/js/vendor/jquery-migrate-1.4.1.min.js"}
+{js href="/static/index/assets/js/vendor/bootstrap.min.js"}
+{js href="/static/index/assets/js/ajax-mail.js"}
+{js href="/static/index/assets/js/plugins.js"}
+{js href="/static/index/assets/js/active.js"}
+<!--alert-->
+{css href="/static/css/BeAlert.css"}
+{js href="/static/js/BeAlert.js"}
+</body>
+</html>

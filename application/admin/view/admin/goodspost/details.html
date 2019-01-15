@@ -1,0 +1,33 @@
+
+
+
+
+<!--
+
+details
+
+-->
+
+<div class="field" style="width: 75%">
+    <label>视频链接：</label>
+    <div class="ui labeled input fluid">
+        <div class="ui label"><font style="vertical-align: inherit;">HTTP：//   </font>
+        </div>
+        <input type="text" name="video"    {present name="find"} value="{$find.video}" {/present} placeholder="url">
+    </div>
+</div>
+
+
+<label>商品简介：</label>
+<div class="ui segment"  style="width: 75%;   ">
+    <div class="ui form">
+        <div class="field">
+            <textarea name="intro" class="trumbowygeditor" placeholder="商品简介"> {present name="find"}{$find.intro} {/present}</textarea>
+        </div>
+    </div>
+</div>
+
+<div class="field" style="margin-top: 30px">
+    <label>商品详情：</label>
+    <textarea id="container"  name="detail" type="text">{present name="find"}{$find.detail}{/present}</textarea>
+</div>

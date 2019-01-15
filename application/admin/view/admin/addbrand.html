@@ -1,0 +1,31 @@
+{include file="common/static" /}
+<div id="contextWrap">
+    {include file="common/left" /}
+</div>
+<div class="pusher">
+    {include file="common/header" /}
+    <div class="mainWrap navslide" >
+        <h5 class="ui header"> 您现在的位置：<a href="javascript:;window.history.go(-1)">商品品牌列表</a>/ 品牌-添加  </h5>
+        <div class="sixteen wide tablet eight wide computer column" style="width: 85%;    margin: auto;">
+            <div class="ui segments">
+                <form class="ui form segment form3">
+                    <div class="field">
+                        <label>名称：</label>
+                        <input placeholder="请输入品牌名称"  autocomplete="off" value="<?php if(!empty($find)){echo  $find['name'];}?>" name="name" type="text">
+                    </div>
+                    <div class="uploader-demo">
+                        <div id="fileList{$rand}" class="uploader-list uploads1"></div>
+                        <div id="filePicker{$rand}" class="uploads">上传logo</div>
+                        {present name="find"}
+                        <img src="{$find.icon}"  style="width: 5%"/>
+                        {/present}
+                        <input type="hidden" class="upload-file" value="{present name="find"}{$find.icon}{/present}"  name="icon" >
+                    </div>
+                    <input name="id" class="data_id"  value="<?php if(!empty($find)){echo  $find['id'];}?>"   type="hidden" />
+                    <div class="ui blue submit button add-brand">保存提交</div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="common/footer" /}

@@ -1,0 +1,178 @@
+{include file="common/static" /}
+<div id="contextWrap">
+    {include file="common/left" /}
+</div>
+<!--sidebar-->
+<div class="pusher">
+    <!--navbar-->
+    {include file="common/header" /}
+    <!--navbar-->
+    <!--maincontent-->
+    <style>
+        .ui.grid {
+            margin-top: -6.7rem;
+        }
+
+        .ui.fluid.dropdown {
+            display: block;
+            width: 17%;
+            min-width: 0;
+            margin: 0 auto;
+            z-index: 9999;
+        }
+    </style>
+    <div class="mainWrap navslide">
+        <div class="ui equal width left aligned padded grid stackable tables">
+            <!--Site Content-->
+            <div class="row">
+                <div class="sixteen wide column">
+                    <div class="ui segments">
+                        <div class="ui segment">
+                            <h5 class="ui header"> 您现在的位置：首页/ -商品列表 </h5>
+                        </div>
+                        <div class="ui segment">
+                            <button class="ui blue button add_goods"><i class="write icon"></i>+添加商品</button>
+                            <!--<button class="ui orange  button add_goods"><i class="recycle icon"></i>回收站</button>-->
+
+                            <div class="ui dropdown fluid selection" tabindex="0"><!--multiple-->
+                                <select name="skills" multiple="">
+                                    {if !empty($cate)}
+                                    {foreach name="cate" item="vo" key="k" }
+                                <option value="{$vo.id}"  <?php   if(!empty($_GET['cateid']) && $_GET['cateid'] == $vo['id']){ echo 'selected';}?>>{$vo.cate_name}</option>
+                                    {/foreach}
+                                    {/if}
+                                </select>
+                                <div class="default text"><?php if( !empty($_GET['cateid']) && $_GET['cateid'] == 'all') { echo  '不限' ;} else {echo '商品分类';}?></div>
+                                <div class="menu" tabindex="-1">
+                                    <a href="{url('admin/admin/goods'}?cateid=all">
+                                        <div class="item" style=" padding: 4% 0;" >不限</div>
+                                    </a>
+                                    {if !empty($cate)}
+                                    {foreach name="cate" item="vo" key="k" }
+                                    <a  href="{if  $vo.pid== 0 } javascript:; {else}{url('admin/admin/goods'}?cateid={$vo.id} {/if}" >
+                                    <div class="item" data-pid="{$vo.pid}" data-id="{$vo.id}"  style=" {if  $vo.pid== 0 }  background: #eaeaea; color: #a7a5a5; border-radius: 1px;  {/if} "data-value="{$vo.id}">{$vo.html}{$vo.cate_name}
+                                </div>
+                                    </a>
+                                {/foreach}
+                                {/if}
+                            </div>
+                        </div>
+                            </div>
+                        </div>
+                        <!--<button style="    position: absolute; z-index: 9999;   left: 58.4%; top: 54.5%;" class="ui twitter  button search-cates">搜索分类</button>-->
+                    <table id="data_table" class="ui compact selectable striped celled table tablet stackable"
+                           cellspacing="0" width="100%">
+                        <colgroup>
+                            <col width="1%">
+                            <col width="1%">
+                            <col width="10%">
+                            <col width="5%">
+                            <col width="1%">
+                            <col width="1%">
+                            <col width="5%">
+                            <col width="1%">
+                            <col width="1%">
+                            <col width="1%">
+                            <col width="5%">
+                            <col width="1%">
+                            <col width="10%">
+                            <col width="2%">
+                            <col width="15%">
+                            <col width="1%">
+                            <col width="8%">
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>顺序</th>
+                            <th>编号</th>
+                            <th>基本信息</th>
+                            <th>所属分类</th>
+                            <th>原价</th>
+                            <th>现价</th>
+                            <th>标签</th>
+                            <th>是否为热销</th>
+                            <th>推荐首页</th>
+                            <th>销量</th>
+                            <th>创建时间</th>
+                            <th>重量</th>
+                            <th>宣传视频链接</th>
+                            <th>邮费</th>
+                            <th>简介</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {foreach name="goods" item="vo" key="k" }
+                        <tr>
+                            <td>{$vo.sort}</td>
+                            <td>{$vo.id}</td>
+                            <td><span><a href="{$vo.icon}" target="_blank"><img src="{$vo.icon}" style="width: 25%"></a> {$vo.name}</span>
+                            </td>
+                            <td>{$vo.cate_name}</td>
+                            <td>{$vo.old_price}</td>
+                            <td>{$vo.new_price}</td>
+                            <td>{$vo.label}</td>
+                            <td style="overflow:visible;">
+                                {if $vo.is_hot == 1}
+                                <a href="javascript:;"> <span class="ui green icon button  switch"
+                                                              data-switch-url="{url('admin/admin/goods')}"
+                                                              data-switch-value="2" data-id="{$vo.id}"
+                                                              data-field="is_hot"
+                                                              data-do="_status">是</span></a>
+                                {else}
+                                <a href="javascript:;"> <span class="ui compact icon button  switch"
+                                                              data-switch-url="{url('admin/admin/goods')}"
+                                                              data-switch-value="1" data-id="{$vo.id}"
+                                                              data-field="is_hot"
+                                                              data-do="_status">否</span></a>
+                                {/if}
+                            </td>
+                            <td style="overflow:visible;">
+                                {if $vo.is_recommend == 1}
+                                <a href="javascript:;"> <span class="ui green icon button  switch"
+                                                              data-switch-url="{url('admin/admin/goods')}"
+                                                              data-switch-value="2" data-id="{$vo.id}"
+                                                              data-field="is_recommend"
+                                                              data-do="_status">推荐</span></a>
+                                {else}
+                                <a href="javascript:;"> <span class="ui compact icon button  switch"
+                                                              data-switch-url="{url('admin/admin/goods')}"
+                                                              data-switch-value="1" data-id="{$vo.id}"
+                                                              data-field="is_recommend"
+                                                              data-do="_status">不推荐</span></a>
+                                {/if}
+                            </td>
+                            <td>{$vo.volume}</td>
+                            <td>{$vo.create_time}</td>
+                            <td><span style="color: #fb0045;">{$vo.weight}</span>kg</td>
+                            <td><a href="{$vo.video}" target="_blank">{$vo.video}</a></td>
+                            <td>{$vo.expresses_price}</td>
+                            <td><?php if(strlen($vo['intro']) > 180) { echo substr($vo['intro'], 0, 180).'...';} else {
+                                echo $vo['intro'];}?>
+                            </td>
+                            <td>
+                                {if condition="$vo.status eq 1" }
+                                <button class="ui green icon button close-status-goods" data-id="{$vo.id}"> 上架</button>
+                                {else /}
+                                <button class="ui compact icon button open-status-goods" data-id="{$vo.id}">下架</button>
+                                {/if}
+                            </td>
+                            <td>
+                                <a href="<?php echo url('admin/admin/addgoods')?>?id={$vo.id}">
+                                    <button class="ui icon blue button"> 编辑</button>
+                                </a>
+                                <button class="ui icon red button delete-goods" data-id="{$vo.id}"> 删除</button>
+                            </td>
+                        </tr>
+                        {/foreach}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--maincontent-->
+{include file="common/footer" /}
+

@@ -1,0 +1,182 @@
+﻿{include file="common/header" /}
+<script src="http://api.map.baidu.com/api?v=2.0&ak=A1LU7iHS0avqQwPLAxbhKn0UYSQCuRVH"></script>
+{js  href="http://www.jq22.com/jquery/jquery-1.10.2.js"}
+{js  href="/static/index/assets/js/jquery.baiduMap.min.js"}
+<style>
+    .box { width: 100%; height: 600px; margin: 40px 0; }
+    #container2 { width: 100%; height: 88%; }
+    .list li { height: 34px; line-height: 34px; padding-left: 20px; }
+    .list li.active a { color: red; }
+</style>
+<!--== Start Page Breadcrumb ==-->
+<div class="page-breadcrumb-wrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="page-breadcrumb">
+                    <ul class="nav">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html" class="active">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--== End Page Breadcrumb ==-->
+
+<!--== Page Content Wrapper Start ==-->
+<div id="page-content-wrapper">
+    <div class="container">
+        <div class="row">
+            <!-- Start Contact Info  -->
+            <div class="col-lg-6">
+                <div class="contact-info-wrap contact-method">
+                    <h2><i class="fa fa-minus" aria-hidden="true"></i>联系我们</h2>
+                    <p>{$setting.title}</p>
+
+                    <div class="contact-info-items">
+                        <div class="single-contact-info">
+                            <h3><i class="fa fa-phone"></i> Call</h3>
+                            <a href="javascript:alert('{$setting.people_tel}');">{$setting.people_tel}</a>
+                        </div>
+
+                        <div class="single-contact-info">
+                            <h3><i class="fa fa-envelope"></i> Mail</h3>
+                            <a href="javascript:alert('{$setting.email}');">{$setting.email}</a>
+                        </div>
+
+                        <div class="single-contact-info">
+                            <h3><i class="fa fa-map-marker"></i> Address</h3>
+                            <a href="javascript:alert('{$setting.address}');" target="_blank">{$setting.address}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Contact Info  -->
+
+            <!-- Start Contact Form -->
+            <div class="col-lg-6">
+                <div class="contact-form-wrap contact-method">
+                    <h2><i class="fa fa-minus" aria-hidden="true"></i>给我们留言</h2>
+                    <form action="#" method="post" id="contact-form">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="single-input-item">
+                                    <input type="text" name="user_name" placeholder="您的姓名" required />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="single-input-item">
+                                    <input type="text" name="user_tel" placeholder="您的联系方式" required />
+                                    <input type="hidden" name="SE_KO" value="{$SE_KO}" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single-input-item">
+                            <textarea name="user_message" cols="30" rows="4" placeholder="您的留言" required></textarea>
+                        </div>
+                        <div class="single-input-item">
+                            <button type="button" class="btn btn-primary btn-lg">&nbsp;&nbsp;&nbsp;&nbsp;点我提交&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                        </div>
+                        <!-- Show Succes or Error Message -->
+                        <div class="form-message"></div>
+                    </form>
+                </div>
+            </div>
+            <!-- End Contact Form -->
+        </div>
+    </div>
+</div>
+<!--== Page Content Wrapper End ==-->
+
+<!-- Start Map Area Wrapper -->
+<div class="map-area-wrapper">
+    <div class="box">
+        <div id="container2"></div>
+    </div>
+    <script type="text/javascript">
+
+
+
+        $(function () {
+            $(":button").on('click', function () {
+                var user_name = $("input[name='user_name']").val(),
+                    user_tel = $("input[name='user_tel']").val(),
+                    SE_KO = $("input[type='hidden']").val(),
+                    user_message = $("textarea[name='user_message']").val();
+
+                if (user_name.length === 0) {
+                    alert('请填写您的姓名');
+                    return false;
+                }
+               if (user_tel.length === 0) {
+                    alert('请填写您的联系方式');
+                   return false;
+                }
+                if (user_message.length === 0) {
+                    alert('请输入您的留言');
+                    return false;
+                }
+
+                formData = {user_name:user_name, user_tel:user_tel, user_message:user_message, SE_KO:SE_KO};
+
+                $.post(
+                    "<?php echo url('index/index/index/')?>?view=contact",
+                    formData,
+
+                    function( response ) {
+                        console.log(response);
+                        if ( response.code === 200 &&response.status === true ) {
+                            alert(response.msg);
+                             setTimeout(function () {   window.location.href = response.url ? response.url : url; }, 2000);
+                        } else {
+
+                            alert(response.msg);
+                        }
+
+                    },  'json');
+
+
+            });
+
+        });
+
+        var points = [{
+            id: 1,
+            lng: 98.526079,
+            lat: 39.753323,
+            title: "{$setting.title}",
+            content: ["地址：{$setting.address}", "电话：{$setting.people_tel}"]
+        }];
+        new BaiduMap({
+            id: "container2",
+            level: 16,
+            type: ["地图", "卫星"],
+            width: 320,
+            height: 70,
+            titleClass: "title",
+            contentClass: "content",
+            showMarkPanorama: true,
+            mapStyle: "light",
+            icon: {
+                url: "/static/index/assets/img/icons/marker.png",
+                width: 25,
+                height: 96
+            },
+            centerPoint: { // 地图中心点经纬度
+                lng: 98.526079,
+                lat: 39.753323,
+            },
+            index: 0,
+            points: points
+        });
+
+    </script>
+
+    <!--<div id="map_content" data-lat="39.753323" data-lng="98.526079" data-zoom="8" data-maptitle="HasTech" data-mapaddress="Floor# 4, House# 5, Block# C </br> Banasree Main Rd, Dhaka">-->
+    </div>
+</div>
+
+<!--== End Newsletter Area ==-->
+{include file="common/footer" /}

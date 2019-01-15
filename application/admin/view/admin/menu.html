@@ -1,0 +1,65 @@
+{include file="common/static" /}
+<div id="contextWrap">
+    {include file="common/left" /}
+    </div>
+    <!--sidebar-->
+    <div class="pusher">
+        <!--navbar-->
+        {include file="common/header" /}
+        <!--navbar-->
+        <!--maincontent-->
+        <div class="mainWrap navslide" >
+            <div class="ui equal width left aligned padded grid stackable tables">
+                <!--Site Content-->
+                <div class="row">
+                    <div class="sixteen wide column">
+                        <div class="ui segments">
+                            <div class="ui segment">
+                                <h5 class="ui header"> 您现在的位置：首页/ -菜单列表  </h5>
+                            </div>
+                            <div class="ui segment">
+                                <button class="ui blue button add_menu" ><i class="write icon"></i>+添加菜单</button>
+                                <table id="data_table" class="ui compact selectable striped celled table tablet stackable" cellspacing="0" width="100%">
+                                    <colgroup>
+                                        <col width="1%">
+                                        <col width="10%">
+                                        <col width="20%">
+                                        <col width="7%">
+                                    </colgroup>
+                                    <thead>
+                                    <tr>
+                                        <th>顺序</th>
+                                        <th>菜单标题</th>
+                                        <th>url</th>
+                                        <th>审核</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {foreach name="menu" item="vo" key="k" }
+                                    <tr>
+                                        <td>{$vo.sort}</td>
+                                        <td>{$vo.title}</td>
+                                        <td>{$vo.url}</td>
+                                        <td>   {if condition="$vo.status eq 1" }
+                                            <button class="ui green icon button  close-status-menu" data-id="{$vo.id}"> 审核通过  </button>
+                                            {else /}
+                                            <button class="ui compact icon button  open-status-menu" data-id="{$vo.id}">  未审核  </button>
+                                            {/if}</td>
+                                        <td>
+                                            <a href="<?php echo url('admin/admin/addmenu')?>?id={$vo.id}"><button class="ui icon blue button" > 编辑</button></a>
+                                            <button class="ui icon red button delete-menu" data-id="{$vo.id}"> 删除</button>
+                                        </td>
+                                    </tr>
+                                    {/foreach}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--maincontent-->
+    </div>
+{include file="common/footer" /}

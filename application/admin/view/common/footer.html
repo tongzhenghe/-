@@ -1,0 +1,248 @@
+
+</div>
+<!--jquery-->
+<script src="/static/js/jquery-2.1.4.min.js"></script>
+<!--jquery-->
+
+<link href="/static/css/BeAlert.css" rel="stylesheet" />
+<script src="/static/js/BeAlert.js"></script>
+
+<!--self-->
+<script src="/static/js/common.js"></script>
+<!--self-->
+<!--semantic-->
+<script src="/static/js/semantic.min.js"></script>
+<!--semantic-->
+<!--counter number-->
+<script src="/static/js/jquery.counterup.min.js"></script>
+<script src="/static/js/jquery.dataTables.js"></script>
+<script src="/static/js/custom-datatable.js"></script>
+<script src="/static/js/waypoints.min.js"></script>
+<!--counter number-->
+<!--flot chart-->
+<script src="/static/js/jquery.flot.js"></script>
+<script src="/static/js/jquery.flot.resize.min.js"></script>
+<script src="/static/js/jquery.flot.tooltip.min.js"></script>
+<script src="/static/js/curvedLines.js"></script>
+<script src="/static/js/js.cookie.js"></script>
+<!--flot chart-->
+<!--chartjs chart-->
+<script src="/static/js/chart.min.js"></script>
+<!--chartjs chart-->
+
+<script src="/static/js/jquery.nicescroll.min.js"></script>
+
+<script data-pace-options='{ "ajax": false }' src="/static/js/pace.js"></script>
+
+<script src="/static/js/chartist.min.js"></script>
+
+<script src="/static/js/dashboard2.js"></script>
+
+<script src="/static/js/main.js"></script>
+
+<script src="/static/js/trumbowyg.js"></script>
+
+<!--引入JS-->
+<script type="text/javascript" src="/static/js/webuploader.js"></script>
+<script>
+
+var fileList = $(".uploader-demo").children(".uploads1").attr("id"),
+    filePicker = $(".uploader-demo").children(".uploads").attr("id");
+
+
+    // 初始化Web Uploader
+    var uploader = WebUploader.create({
+
+        // 选完文件后，是否自动上传。
+        auto: true,
+
+        // swf文件路径
+        swf:  + '/static//js/Uploader.swf',
+
+        // 文件接收服务端。
+        server: '/index.php/admin/admin/uploader',
+        // 选择文件的按钮。可选。
+        // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+        pick: '#'+filePicker,
+
+        // 只允许选择图片文件。
+        accept: {
+            title: 'Images',
+            extensions: 'gif,jpg,jpeg,bmp,png',
+            mimeTypes: 'image/*'
+        }
+    });
+
+    // 当有文件添加进来的时候
+    uploader.on( 'fileQueued', function( file ) {
+        var $li = $(
+            '<div id="' + file.id + '" class="file-item thumbnail">' +
+            '<img>' +
+            '<div class="info">' + file.name + '</div>' +
+            '</div>'
+            ),
+            $img = $li.find('img');
+
+        var  $list = $("#"+fileList);
+        // $list为容器jQuery实例
+        $list.append( $li );
+
+        // 创建缩略图
+        // 如果为非图片文件，可以不用调用此方法。
+        // thumbnailWidth x thumbnailHeight 为 100 x 100
+        uploader.makeThumb( file, function( error, src ) {
+            if ( error ) {
+                $img.replaceWith('<span>不能预览</span>');
+                return;
+            }
+
+            $img.attr( 'src', src );
+        }, 100, 100 );
+    });
+
+    // 文件上传过程中创建进度条实时显示。
+    uploader.on( 'uploadProgress', function( file, percentage ) {
+        // console.log(file)
+        var $li = $( '#'+file.id ),
+            $percent = $li.find('.progress span');
+
+        // 避免重复创建
+        if ( !$percent.length ) {
+            $percent = $('<p class="progress"><span></span></p>')
+                .appendTo( $li )
+                .find('span');
+        }
+
+        $percent.css( 'width', percentage * 100 + '%' );
+    });
+
+    uploader.on( 'uploadSuccess', function( file, success ) {
+
+        console.log(success.file);
+        if (success.file) {
+
+            $(".upload-file").val(success.file);
+
+        }
+        $( '#'+file.id ).addClass('upload-state-done');
+    });
+
+
+// 文件上传成功，给item添加成功class, 用样式标记上传成功。
+
+    // 文件上传失败，显示上传出错。
+    uploader.on( 'uploadError', function( file ) {
+        var $li = $( '#'+file.id ),
+            $error = $li.find('div.error');
+
+        // 避免重复创建
+        if ( !$error.length ) {
+            $error = $('<div class="error"></div>').appendTo( $li );
+        }
+
+        $error.text('上传失败');
+
+    });
+
+    // 完成上传完了，成功或者失败，先删除进度条。
+    uploader.on( 'uploadComplete', function( file ) {
+
+        $( '#'+file.id ).find('.progress').remove();
+
+    });
+</script>
+
+<!-- 配置文件 -->
+<script type="text/javascript" src="/static/ueditor/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="/static/ueditor/ueditor.all.js"></script>
+<script type="text/javascript" src="/static/ueditor/zh-cn.js"></script>
+<!-- 实例化编辑器 -->
+<script type="text/javascript">
+
+    var ue = UE.getEditor('container', {
+        initialFrameWidth:1000,
+        initialFrameHeight:300,
+    });
+
+    var ue = UE.getEditor('container2', {
+        initialFrameWidth:1000,
+        initialFrameHeight:300,
+    });
+
+
+
+
+</script>
+
+
+<!--多图-->
+<script>
+    // 初始化Web Uploader
+    var uploader = WebUploader.create({
+
+        // 选完文件后，是否自动上传。
+        auto: true,
+
+        // swf文件路径
+        swf:  + '/static//js/Uploader.swf',
+
+        // 文件接收服务端。
+        server: '/index.php/admin/admin/uploader',
+        chunked: true,
+
+        // 选择文件的按钮。可选。
+        // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+        pick: '.filePicker',
+
+        // 只允许选择图片文件。
+        accept: {
+            title: 'Images',
+            extensions: 'gif,jpg,jpeg,bmp,png',
+            mimeTypes: 'image/*'
+        }
+    });
+
+    // 当有文件添加进来的时候
+    uploader.on( 'fileQueued', function( file ) {
+        var width = 100, height = 100;
+        var $li = $(
+            '<div id="' + file.id + '" class="file-item thumbnail" >' +
+            '<img >' +
+            '<div class="info">' + file.name + '</div>' +
+            '</div>'
+            ),
+            $img = $li.find('img');
+
+
+        var $list =  $(".upload");
+        // $list为容器jQuery实例
+        $list.append( $li );
+
+        // 创建缩略图
+        // 如果为非图片文件，可以不用调用此方法。
+        // thumbnailWidth x thumbnailHeight 为 100 x 100
+        uploader.makeThumb( file, function( error, src ) {
+            if ( error ) {
+                $img.replaceWith('<span>不能预览</span>');
+                return;
+            }
+
+            $img.attr( 'src', src );
+        }, width, height );
+    });
+
+    uploader.on( 'uploadSuccess', function( file, success ) {
+        if (success.file ) {
+            $(".images").append('<input type="hidden" name="images" value="'+success.file+'"/>');
+        }
+        $( '#'+file.id ).addClass('upload-state-done');
+    });
+
+    $(".up-remove-image").on("click",  function () {
+     $(this).parent().remove();
+    });
+</script>
+
+
+

@@ -1,0 +1,31 @@
+<!--sidebar-->
+<div class="ui sidebar vertical left menu overlay  borderless visible sidemenu inverted  grey" style="-webkit-transition-duration: 0.1s; transition-duration: 0.1s;" data-color="grey">
+    <div style="    height: 8%;
+    background: #20222a;
+    font-size: 28px;
+    text-align: center;
+    line-height: 67px;
+    color: #c5c5c5;
+    font-family: cursive;
+    font-weight: bolder;">炬晖农业</div>
+    <!--<a class="item logo" href="javascript: window.history.go(0);" >-->
+        <!--<img src="/static/icon/logo.gif" alt="stagblogo" /><img src="/static/icon/logo.gif" alt="stagblogo" class="displaynone" />-->
+    <!--</a>-->
+    <div class="ui accordion inverted">
+        {foreach name="leftNav" item="vo" key="k" }
+        <a class="title item parent"  style="pointer-events: none">
+            <i class="ion-speedometer titleIcon icon"></i><span class="nav_1"> {$vo.name}</span> <i class="dropdown icon"></i>
+        </a>
+        <div class="content active" >
+            <?php if(!empty($vo['children'])):?>
+            {foreach name="$vo.children" item="vo_lower" key="k_lower" }
+            <?php $result = strpos( $url, $vo_lower['url'] );?>
+            <a class="item nav_2<?php if($result !==  false ):?>  active<?php Endif;?>"  href="{$vo_lower.url}" >
+                <span> {$vo_lower.name}</span>
+            </a>
+            {/foreach}
+         <?php Endif;?>
+        </div>
+        {/foreach}
+    </div>
+</div>

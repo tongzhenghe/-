@@ -1,0 +1,43 @@
+{include file="common/static" /}
+<div id="contextWrap">
+    {include file="common/left" /}
+</div>
+<div class="pusher">
+    {include file="common/header" /}
+    <div class="mainWrap navslide" >
+        <h5 class="ui header"> 您现在的位置：<a href="javascript:;window.history.go(-1)">生产基地列表</a>/ 生产基地-添加  </h5>
+        <div class="sixteen wide tablet eight wide computer column" style="width: 85%;    margin: auto;">
+            <div class="ui segments">
+                <form class="ui form segment form3">
+                    <div class="field">
+                        <label>顺序：</label>
+                        <input placeholder="顺序"  value="<?php if(!empty($find)){echo  $find['sort'];}?>" name="sort" type="text">
+                        <div class="help-text">注意： 数字越大越靠前。</div>
+                    </div>
+                    <div class="field">
+                            <label>标题：</label>
+                            <input placeholder="名称"  value="<?php if(!empty($find)){echo  $find['title'];}?>" name="title" type="text">
+                    </div>
+                    <div class="field" style="margin-top: 30px">
+                        <label>基地介绍：</label>
+                        <textarea id="container2" name="content" type="text/plain">  {if !empty($find.content)}{$find.content} {/if}</textarea>
+                    </div>
+                    <div class="uploader-demo">
+                        <div id="fileList{$rand}" class="uploader-list uploads1"></div>
+                        <div id="filePicker{$rand}" class="uploads">上传基地图标， </div>
+                        {present name="find"}
+                        <img src="{$find.icon}"  style="width: 5%"/>
+                        {/present}
+                        <input type="hidden" class="upload-file" value="{present name="find"}{$find.icon}{/present}"  name="icon" >
+                        <div class="help-text">注意： 此项必填 ， 建议大小： 待定。</div>
+                    </div>
+                    {if!empty($find)}
+                    <input name="id" class="data_id"  value="{$find.id}"   type="hidden" />
+                    {/if}
+                    <div class="ui blue submit button add-base">保存提交</div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="common/footer" /}

@@ -1,0 +1,152 @@
+﻿{include file="common/header" /}
+<!--== Start Page Breadcrumb ==-->
+<div class="page-breadcrumb-wrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="page-breadcrumb">
+                    <ul class="nav">
+                        <li><a href="/">首页</a></li>
+                        <li><a href="javascript:;" class="active">关于我们</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--== End Page Breadcrumb ==-->
+
+<!--== Page Content Wrapper Start ==-->
+<div id="page-content-wrapper">
+    <div class="container">
+        <!-- About Page Content Start -->
+        <div class="row">
+            <!-- About Text Start -->
+            <div class="col-lg-6 order-last order-lg-first">
+                <div class="about-text-wrap">
+                    {$setting.comintro}
+                </div>
+            </div>
+            <!-- About Text End -->
+
+            <!-- About Image Start -->
+            <div class="col-lg-5 col-md-10 m-md-auto ml-auto">
+                <div class="about-image-wrap">
+                    <img src="/static/index/assets/img/about.jpg" alt="About" />
+                </div>
+            </div>
+            <!-- About Image End -->
+        </div>
+        <!-- About Page Content End -->
+    </div>
+</div>
+<!--== Page Content Wrapper End ==-->
+
+<!-- 推荐商品-->
+<div class="category-banner-area deal-products p-0">
+    <div class="container">
+        <div class="row">
+             {if !empty($recommend_goods)}
+            {volist name="recommend_goods" id="vo"}
+            <div class="col-md-4">
+                <a href="<?php echo url('index/index/index')?>?view=single-product&id={$vo.id}"><img src="{$vo.icon}" alt="{$vo.name}"></a>
+            </div>
+            {/volist}
+            {/if}
+        </div>
+    </div>
+</div>
+<!-- End Sale Feature Products -->
+
+<!--== Start Brand Carousel Area ==-->
+<div class="brand-logo-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="brand-logo-carousel owl-carousel">
+                    {if !empty($aptitude)}
+                    {volist name="aptitude" id="vo"}
+                    <div class="single-brand-item">
+                        <a href="#"><img src="{$vo.icon}" alt="{$vo.title}"></a>
+                    </div>
+                    {/volist}
+                    {/if}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--== End Brand Carousel Area ==-->
+
+<!--== Start Call To Action ==-->
+<section id="call-to-action" class="callto-action-two">
+    <div class="container">
+        <div class="call-to-action-content">
+            <div class="row">
+                <!-- Single Call to Action Start -->
+                <!-- Single Call to Action Start -->
+                <div class="col-lg-3 col-sm-6 m-auto">
+                    <div class="single-action-item d-flex align-items-center">
+                        <div class="call-action-icon">
+                            <!--<i class="fa fa-truck"></i>-->
+                            <img class="vcenter" src="/static/index/assets/img/pur1.png" alt="">
+                        </div>
+                        <div class="call-action-info">
+                            <h4>粒粒精选</h4>
+                            <p>酒泉炬晖农业优质富硒小米</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Call to Action End -->
+
+                <!-- Single Call to Action Start -->
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-action-item d-flex align-items-center">
+                        <div class="call-action-icon">
+                            <!--<i class="fa fa-support"></i>-->
+                            <img class="vcenter" src="/static/index/assets/img/pur2.png" alt="">
+                        </div>
+                        <div class="call-action-info">
+                            <h4>古法存仓</h4>
+                            <p>谷香纯正营养不流失</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Call to Action End -->
+
+                <!-- Single Call to Action Start -->
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-action-item d-flex align-items-center">
+                        <div class="call-action-icon">
+                            <!--<i class="fa fa-calendar"></i>-->
+                            <img class="vcenter" src="/static/index/assets/img/pur3.png" alt="">
+                        </div>
+                        <div class="call-action-info">
+                            <h4>原头直销</h4>
+                            <p>精选的贡米品质保障</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Call to Action End -->
+
+                <!-- Single Call to Action Start -->
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-action-item d-flex align-items-center">
+                        <div class="call-action-icon">
+                            <!--<i class="fa fa-refresh"></i>-->
+                            <img class="vcenter" src="/static/index/assets/img/pur4.png" alt="">
+                        </div>
+                        <div class="call-action-info">
+                            <h4>电商扶贫 </h4>
+                            <p>助力寨里老乡脱贫致富</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--== End Call To Action ==-->
+
+
+{include file="common/footer" /}
